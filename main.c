@@ -117,7 +117,7 @@ int main(int nargs, char **args) {
 
     deleteList(&list);
 
-    //comentario 1
+    //si que me funciona
 
     return 0;
 }

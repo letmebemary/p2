@@ -104,7 +104,7 @@ void readTasks(char *filename) {
 
 int main(int nargs, char **args) {
 
-    char *file_name = "vote.txt";
+    char *file_name;
 
     if (nargs > 1) {
         file_name = args[1];

@@ -24,7 +24,7 @@
 #endif
 
 tList list;
-int vote_null;
+int vote_null, total_votes;
 
 
 void new(char param[NAME_LENGTH_LIMIT+1]) {
@@ -41,15 +41,18 @@ void stats (int param_int) {
     if (first(list) != LNULL) {
         item1 = getItem(first(list), list);
         pos = first(list);
-        printf("Party %s numvotes %d (%.2f)\n", item1.partyName, item1.numVotes,(item1.numVotes/param_int)*100);
+        printf("Party %s numvotes %d (%.2f)\n", item1.partyName, item1.numVotes,((float)item1.numVotes/param_int)*100);
 
         while(next(pos,list) != LNULL){
             item1 = getItem(next(pos,list),list);
             pos = next(pos,list);
-            printf("Party %s numvotes %d (%.2f)\n", item1.partyName, item1.numVotes,(item1.numVotes/param_int)*100);
+            printf("Party %s numvotes %d (%.2f)\n", item1.partyName, item1.numVotes,((float)item1.numVotes/param_int)*100);
         }
+    }else{
+        printf("+ Error: none parties found");
     }
     printf("Null votes %d\n", vote_null);
+    printf("Participation: %d votes from 10 voters (%.2f)\n", total_votes+vote_null,((float)(total_votes+vote_null)/param_int)*100);
 }
 
 void vote (char param[NAME_LENGTH_LIMIT+1]) {
@@ -61,6 +64,7 @@ void vote (char param[NAME_LENGTH_LIMIT+1]) {
         item1 = getItem(findItem(param, list), list);
         updateVotes(item1.numVotes + 1, findItem(param, list),&list);
         printf("* Vote: party %s numvotes %d\n", item1.partyName, item1.numVotes + 1);
+        total_votes += 1;
     }
 }
 

@@ -23,33 +23,33 @@
 #include "list/list.h"
 #endif
 
-tList list;                         //declaramos la lista de tipo tList
-int vote_null, total_votes;         //declaramos dos variables de tipo entero
+tList list;                         //declaración lista de tipo tList
+int vote_null, total_votes;         //votos nulos y votos totales
 
 
 void new(char param[NAME_LENGTH_LIMIT+1]) {             //función que crea un nuevo partido
-    tItemL item1;                                       //declaramos una variable de tipo tItemL
-    strcpy(item1.partyName, param);                     //copiamos el nombre del partido en item1.partyname
-    item1.numVotes = 0;                                 //inicializamos los votos del partido a cero
-    insertItem(item1, LNULL, &list);                    //introducimos el item(nombre y votos) en la lista
-    printf("* New: party %s\n", item1.partyName);       //muestra un texto conforme se ha creado dicho partido
+    tItemL item1;
+    strcpy(item1.partyName, param);                     //introduccion de param en item1.partyname
+    item1.numVotes = 0;
+    insertItem(item1, LNULL, &list);                    //introducion de item en la lista
+    printf("* New: party %s\n", item1.partyName);
 }
 
-void stats (int param_int) {                            //función que muestra los votos y la participación (porcentaje)
+void stats (int param_int) {                            //función que muestra los votos de cada partido y la participación 
     tItemL item1;
-    tPosL pos;                                          //declaramos variable de tipo tPosL
-    if (first(list) != LNULL) {                         //bucle cuando la primera posición de la lista no es nula
+    tPosL pos;
+    if (first(list) != LNULL) {                         //comprobacion de lista vacia
         item1 = getItem(first(list), list);             //item1 toma el valor del primer elemento de la lista
         pos = first(list);
         printf("Party %s numvotes %d (%.2f %%)\n", item1.partyName, item1.numVotes,((float)item1.numVotes/param_int)*100);
 
-        while(next(pos,list) != LNULL){                 //mientras no sea el ultimo elemento de la lista
-            item1 = getItem(next(pos,list),list);       //item toma el valor de ese elemento de la lista
-            pos = next(pos,list);                       //pasa al siguiente elemento
+        while(next(pos,list) != LNULL){                 //muestra las stats de cada partido si hay 2do
+            item1 = getItem(next(pos,list),list);
+            pos = next(pos,list);
             printf("Party %s numvotes %d (%.2f %%)\n", item1.partyName, item1.numVotes,((float)item1.numVotes/param_int)*100);
         }
     }else{
-        printf("+ Error: none parties found");
+        printf("+ Error: none parties found");         //mensaje de error en caso de lista vacia
     }
     printf("Null votes %d\n", vote_null);
     printf("Participation: %d votes from 10 voters (%.2f %%)\n", total_votes+vote_null,((float)(total_votes+vote_null)/param_int)*100);
@@ -124,14 +124,6 @@ int main(int nargs, char **args) {
 #endif
     }
 
-/*
-    tItemL item1, item2;
-    strcpy(item1.partyName, "prueba");
-    item1.numVotes = 5;
-    insertItem(item1,LNULL,&list);
-    item2 = getItem(first(list),list);
-    printf("%s %d",item2.partyName, item2.numVotes);
-*/
 
     createEmptyList(&list);         //creación de la lista vacía
     readTasks(file_name);           //llamada a la función encargada de leer el fichero

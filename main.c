@@ -35,10 +35,10 @@ void new(char param[NAME_LENGTH_LIMIT+1]) {             //función que crea un n
     printf("* New: party %s\n", item1.partyName);
 }
 
-void stats (int param_int) {                            //función que muestra los votos de cada partido y la participación 
+void stats (int param_int) {                          //función que muestra los votos de cada partido y la participación
     tItemL item1;
     tPosL pos;
-    if (first(list) != LNULL) {                         //comprobacion de lista vacia
+    if (!isEmptyList(list)) {                         //comprobacion de lista vacia
         item1 = getItem(first(list), list);             //item1 toma el valor del primer elemento de la lista
         pos = first(list);
         printf("Party %s numvotes %d (%.2f %%)\n", item1.partyName, item1.numVotes,((float)item1.numVotes/param_int)*100);
@@ -55,22 +55,21 @@ void stats (int param_int) {                            //función que muestra l
     printf("Participation: %d votes from 10 voters (%.2f %%)\n", total_votes+vote_null,((float)(total_votes+vote_null)/param_int)*100);
 }
 
-void vote (char param[NAME_LENGTH_LIMIT+1]) {           //función que toma nota de los votos a cada partido, incluidos nulos
+void vote (char param[NAME_LENGTH_LIMIT+1]) {           //función que toma nota de los votos
     tItemL item1;
-    if (findItem(param,list) == LNULL) {                //en el caso de que ese partido no exista
-        printf("+ Error: Vote not possible. Party %s not found. NULLVOTE\n", param);    //voto nulo
+    if (findItem(param,list) == LNULL) {                //en el caso de que ese partido no exista voto nulo
+        printf("+ Error: Vote not possible. Party %s not found. NULLVOTE\n", param);
         vote_null += 1;
     }else {
         item1 = getItem(findItem(param, list), list);
-        updateVotes(item1.numVotes + 1, findItem(param, list),&list);                   //suma un voto a determinado partido
+        updateVotes(item1.numVotes + 1, findItem(param, list),&list);                   //suma 1 voto a un partido
         printf("* Vote: party %s numvotes %d\n", item1.partyName, item1.numVotes + 1);
-        total_votes += 1;
+        total_votes += 1;                              //aumento de votos totales
     }
 }
 
-void processCommand(char command_number[CODE_LENGTH+1], char command, char param[NAME_LENGTH_LIMIT+1]) {      //funcion que determina
-                                                                                                              // la acción a llevar a cabo
-    printf("********************\n");
+void processCommand(char command_number[CODE_LENGTH+1], char command, char param[NAME_LENGTH_LIMIT+1]) {      //funcion que determina la acción a llevar a cabo
+    printf("********************\n");                 //separador de intrucciones
     switch(command) {
         case 'N': {     //crear un partido
             printf("%s %c: party %s\n", command_number, command, param);
@@ -94,21 +93,21 @@ void processCommand(char command_number[CODE_LENGTH+1], char command, char param
     }
 }
 
-void readTasks(char *filename) {        //funcion que lee el archivo
+void readTasks(char *filename) {                      //funcion que lee el archivo
     FILE *df;
     char command_number[CODE_LENGTH+1], command, param[NAME_LENGTH_LIMIT+1];
 
-    df = fopen(filename, "r");          //abre filename y lo lee
+    df = fopen(filename, "r");                 //abre filename y lo lee
     if (df != NULL) {
-        while (!feof(df)) {             //mientras no llega al final del archivo
+        while (!feof(df)) {
             char format[16];
             sprintf(format, "%%%is %%c %%%is", CODE_LENGTH, NAME_LENGTH_LIMIT);
             fscanf(df,format, command_number, &command, param);
             processCommand(command_number, command, param);     //llamada a la funcion encargada de repartir tareas
         }
-        fclose(df);                     //cierre del fichero
+        fclose(df);                                  //cierre del fichero
     } else {
-        printf("Cannot open file %s.\n", filename);
+        printf("Cannot open file %s.\n", filename);  //error si no lee el archivo
     }
 }
 
@@ -116,7 +115,7 @@ int main(int nargs, char **args) {
 
     char *file_name;
 
-    if (nargs > 1) {
+    if (nargs > 1) {                         //selecciona el archivo elegido en config.cmake si no esta ya inicializado
         file_name = args[1];
     } else {
 #ifdef INPUT_FILE

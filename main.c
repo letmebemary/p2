@@ -123,16 +123,6 @@ int main(int nargs, char **args) {
 #endif
     }
 
-/*
-    tItemL item1, item2;
-    strcpy(item1.partyName, "prueba");
-    item1.numVotes = 5;
-
-    insertItem(item1,LNULL,&list);
-
-    item2 = getItem(first(list),list);
-    printf("%s %d",item2.partyName, item2.numVotes);
-*/
 
     createEmptyList(&list);
     readTasks(file_name);

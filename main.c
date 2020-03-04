@@ -39,7 +39,7 @@ void new(char param[NAME_LENGTH_LIMIT + 1]) {             //función que crea un
         printf("* New: party %s\n", item1.partyName);
 
     } else
-        printf("+ Error: New not possible");
+        printf("+ Error: New not possible\n");
 
 }
 
@@ -59,7 +59,7 @@ void stats(int param_int) {                          //función que muestra los 
                    ((float) item1.numVotes / param_int) * 100);
         }
     } else {
-        printf("+ Error: none parties found");         //mensaje de error en caso de lista vacia
+        printf("+ Error: none parties found\n");         //mensaje de error en caso de lista vacia
     }
     printf("Null votes %d\n", vote_null);
     printf("Participation: %d votes from 10 voters (%.2f %%)\n", total_votes + vote_null,

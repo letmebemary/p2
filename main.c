@@ -31,10 +31,16 @@ int vote_null, total_votes;         //votos nulos y votos totales
 
 void new(char param[NAME_LENGTH_LIMIT + 1]) {             //función que crea un nuevo partido
     tItemL item1;
-    strcpy(item1.partyName, param);                     //introduccion de param en item1.partyname
-    item1.numVotes = 0;
-    insertItem(item1, LNULL, &list);                    //introducion de item en la lista
-    printf("* New: party %s\n", item1.partyName);
+
+    if (findItem(param,list) != LNULL) {                    //comprobacion de que el partido no exista ya
+        strcpy(item1.partyName, param);                     //introduccion de param en item1.partyname
+        item1.numVotes = 0;
+        insertItem(item1, LNULL, &list);                    //introducion de item en la lista
+        printf("* New: party %s\n", item1.partyName);
+
+    } else
+        printf("+ Error: New not possible");
+
 }
 
 void stats(int param_int) {                          //función que muestra los votos de cada partido y la participación
@@ -62,9 +68,11 @@ void stats(int param_int) {                          //función que muestra los 
 
 void vote(char param[NAME_LENGTH_LIMIT + 1]) {           //función que toma nota de los votos
     tItemL item1;
-    if (findItem(param, list) == LNULL) {                //en el caso de que ese partido no exista voto nulo
+
+    if (findItem(param, list) == LNULL) {                //en el caso de que ese partido no exista: voto nulo
         printf("+ Error: Vote not possible. Party %s not found. NULLVOTE\n", param);
         vote_null += 1;
+
     } else {
         item1 = getItem(findItem(param, list), list);
         updateVotes(item1.numVotes + 1, findItem(param, list), &list);                   //suma 1 voto a un partido

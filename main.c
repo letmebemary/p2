@@ -16,13 +16,13 @@
 #ifdef STATIC_LIST
 #include "static_list.h"
 #endif
+
 #ifdef DYNAMIC_LIST
 #include "dynamic_list.h"
 #endif
+
 #ifdef TEST_LIST
-
 #include "list/list.h"
-
 #endif
 
 
@@ -45,7 +45,7 @@ void new(char param[NAME_LENGTH_LIMIT + 1],tList *list) {             //función
 
 }
 
-void stats(int param_int,tList list, int vote_null, int total_votes) {                          //función que muestra los votos de cada partido y la participación
+void stats(int param_int,tList list, int vote_null, int total_votes) {             //función que muestra los votos de cada partido y la participación
     tItemL item1;
     tPosL pos;
     if (!isEmptyList(list)) {                         //comprobacion de lista vacia

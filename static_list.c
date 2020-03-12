@@ -9,60 +9,57 @@
 
 #include "static_list.h"
 
-/* Write your code here... */
-void createEmptyList (tList* l) {
-    l->lastpos = LNULL
+void createEmptyList (tList* L) {
+    L->lastp = LNULL;
 }
 
-bool insertItem(tItemL d, tPosL p, tList* l) {
-    if(l->lastpos == MAX-1)
+bool insertItem(tItemL d, tPosL p, tList* L) {
+    if(L->lastp == SIZE-1)
         return false;
     else {
-        l->lastpos++
+        L->lastp++;
         if (p == LNULL) {
-            L->dato[lastpos] = d;
-            else {
-                for (int i = l->lastpos; i > p; i--) {
-                    l->dato[i] = l->dato[i-1];
-                }
-            }
+            L->data[L->lastp] = d;
+        } else {
+                for (int i = L->lastp; i > p+1; i--)
+                    L->data[i] = L->data[i-1];
+                L->data[p] = d;
         }
+        return true;
     }
-    return true;
 }
 
-bool copyList(tList l, tList* m) {
+bool copyList(tList L, tList* M) {
     tPosL p;
-    for (p = 0; p < l.lastpos; p++) {
-        m->dato[p] = l->dato[p];
-    }
-    m->lastpos = l.lastpos;
+    for (p = 0; p <= L.lastp; p++)
+        M->data[p] = L.data[p];
+    M->lastp = L.lastp;
     return true;
 }
 
-void updateVotes(tNumVotes d, tPosL p, tList* l) {
-    l->dato[p] = d;
+void updateVotes(tNumVotes d, tPosL p, tList* L) {
+    L->data[p].numVotes = d;
 }
 
-void deleteAtPosition(tPosL p, tList* l) {
+void deleteAtPosition(tPosL p, tList* L) {
     tPosL q;
-    l->lastpos--;
-    for (q = p; q <= l->lastpos; q++) {
-        l.dato[q] = l.dato[q++];
-    }
-}
-
-void deleteList(tList*l) { //acabar
+    L->lastp--;
+    for (q = p; q <= L->lastp; q++)
+        L->data[q] = L->data[q+1];
 
 }
 
-tPosL findItem(tPartyName d, tList l) {
+void deleteList(tList* L) { //acabar
+
+}
+
+tPosL findItem(tPartyName d, tList L) {
     tPosL p;
-    if (l.lastpos == LNULL)
+    if (L.lastp == LNULL)
         return LNULL;
     else {
-        for (p = 0; p < l.lastpos && (l.dato[p] != d); p++) {
-            if (l.dato[p] == d)
+        for (p = 0; (p < L.lastp) && (strcmp(L.data->partyName[p], d) != 0); p++) {
+            if (strcmp(L.data->partyName[p], d) == 0)
                 return p;
             else
                 return LNULL;
@@ -70,29 +67,29 @@ tPosL findItem(tPartyName d, tList l) {
     }
 }
 
-bool isEmptyList(tList l) {
-    return l.lastpos == LNULL;
+bool isEmptyList(tList L) {
+    return L.lastp == LNULL;
 }
 
-tItemL getItem(tPosL p, tList l) {
-    return l->dato[p];
+tItemL getItem(tPosL p, tList L) {
+    return L.data[p];
 }
 
-tPosL first(tList) {
-    return dato[0];
+tPosL first(tList L) {
+    return 0;
 }
 
-tPosL last(tList l) { //mirar que es laspos == iguana
-    return l.lastpos;
+tPosL last(tList L) { //mirar que es laspos == iguana
+    return L.lastp;
 }
 
-tPosL previous(tPosL p, tList l) {
-    return p-1;
+tPosL previous(tPosL p, tList L) {
+    return --p;
 }
 
-tPosL next(tPosL p, tList l) {
-    if (p == last(tlist l))
-    return LNULL;
+tPosL next(tPosL p, tList L) {
+    if (p == last(L))
+        return LNULL;
     else
-    return ++p;
+        return ++p;
 }

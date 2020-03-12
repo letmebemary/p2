@@ -12,20 +12,18 @@
 
 #include "types.h"
 
-#define LNULL NULL
-#define MAX 23
+#define LNULL -1
+#define SIZE 25
 
 #include <stdbool.h>
 #include <stdlib.h>
+#include <string.h>
 
-
-typedef struct tNode* tPosL; //contenido y siguiente nodo
-struct tNode{
-    tItemL dato;
-    tPosL lastpos;
-};
-
-typedef tPosL tList; //la propia lista
+typedef int tPosL;
+typedef struct{
+    tItemL data[SIZE];
+    tPosL lastp;
+}tList;
 
 
 void createEmptyList (tList*);

@@ -52,13 +52,13 @@ void stats(int param_int,tList list, int vote_null, int total_votes) {          
         item1 = getItem(first(list), list);             //item1 toma el valor del primer elemento de la lista
         pos = first(list);
         printf("Party %s numvotes %d (%.2f%%)\n", item1.partyName, item1.numVotes,
-               (total_votes + vote_null) == 0 ? 0 : (float) item1.numVotes /(total_votes + vote_null) * 100);
+               (total_votes + vote_null) == 0 || item1.numVotes == 0 ? 0 : (float) item1.numVotes /(total_votes) * 100);
 
         while (next(pos, list) != LNULL) {                 //muestra las stats de cada partido si hay 2do
             item1 = getItem(next(pos, list), list);
             pos = next(pos, list);
             printf("Party %s numvotes %d (%.2f%%)\n", item1.partyName, item1.numVotes,
-                   (total_votes + vote_null) == 0 ? 0 : (float) item1.numVotes /(total_votes + vote_null) * 100);
+                   (total_votes + vote_null) == 0 || item1.numVotes == 0 ? 0 : (float) item1.numVotes /(total_votes) * 100);
         }
     } else {
         printf("+ Error: none parties found\n");         //mensaje de error en caso de lista vacia
@@ -83,6 +83,23 @@ void vote(char param[NAME_LENGTH_LIMIT + 1],tList *list, int *vote_null, int *to
     }
 }
 
+void illegal(char param[NAME_LENGTH_LIMIT + 1],tList *list, int *vote_null, int *total_votes) {
+    tPosL pos;
+    tItemL item;
+    pos = findItem(param, *list);
+    if(pos != LNULL) {
+        item = getItem(pos,*list);
+        *vote_null += item.numVotes;
+        *total_votes = *total_votes - item.numVotes;
+        deleteAtPosition(pos, &*list);
+        if (findItem(param, *list) == LNULL)
+            printf("* Illegalize: party %s\n", param);
+        else
+            printf("+ Error: Illegalize not possible\n");
+    } else
+        printf("+ Error: Illegalize not possible\n");
+}
+
 void processCommand(char command_number[CODE_LENGTH + 1], char command,
         char param[NAME_LENGTH_LIMIT + 1],tList * list, int *vote_null, int *total_votes) {      //funcion que determina la acción a llevar a cabo
     printf("********************\n");                 //separador de intrucciones
@@ -102,6 +119,12 @@ void processCommand(char command_number[CODE_LENGTH + 1], char command,
         case 'V': {     //actualizar votos
             printf("%s %c: party %s\n", command_number, command, param);
             vote(param,&*list, &*vote_null, &*total_votes);
+            break;
+        }
+        case 'I': {
+            printf("%s %c: party %s\n", command_number, command, param);
+            illegal(param, &*list,&*vote_null,&*total_votes);
+            break;
         }
         default: {
             break;

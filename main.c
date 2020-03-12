@@ -51,20 +51,20 @@ void stats(int param_int,tList list, int vote_null, int total_votes) {          
     if (!isEmptyList(list)) {                         //comprobacion de lista vacia
         item1 = getItem(first(list), list);             //item1 toma el valor del primer elemento de la lista
         pos = first(list);
-        printf("Party %s numvotes %d (%.2f %%)\n", item1.partyName, item1.numVotes,
+        printf("Party %s numvotes %d (%.2f%%)\n", item1.partyName, item1.numVotes,
                (total_votes + vote_null) == 0 ? 0 : (float) item1.numVotes /(total_votes + vote_null) * 100);
 
         while (next(pos, list) != LNULL) {                 //muestra las stats de cada partido si hay 2do
             item1 = getItem(next(pos, list), list);
             pos = next(pos, list);
-            printf("Party %s numvotes %d (%.2f %%)\n", item1.partyName, item1.numVotes,
+            printf("Party %s numvotes %d (%.2f%%)\n", item1.partyName, item1.numVotes,
                    (total_votes + vote_null) == 0 ? 0 : (float) item1.numVotes /(total_votes + vote_null) * 100);
         }
     } else {
         printf("+ Error: none parties found\n");         //mensaje de error en caso de lista vacia
     }
     printf("Null votes %d\n", vote_null);
-    printf("Participation: %d votes from %d voters (%.2f %%)\n", (total_votes + vote_null),param_int,
+    printf("Participation: %d votes from %d voters (%.2f%%)\n", (total_votes + vote_null),param_int,
            ((float) (total_votes + vote_null) / param_int) * 100);
 }
 

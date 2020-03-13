@@ -32,10 +32,10 @@
 void new(char param[NAME_LENGTH_LIMIT + 1],tList *list) {             //función que crea un nuevo partido
     tItemL item1;
 
-    if (findItem(param,*list) == LNULL) {                    //comprobacion de que el partido no exista ya
-        strcpy(item1.partyName, param);                     //introduccion de param en item1.partyname
+    if (findItem(param,*list) == LNULL) {                    //comprobación de que el partido no exista ya
+        strcpy(item1.partyName, param);                     //introducción de param en item1.partyname
         item1.numVotes = 0;
-        if (!insertItem(item1, LNULL, &*list))              //introducion de item1 en la lista
+        if (!insertItem(item1, LNULL, &*list))              //introducción de item1 en la lista
             printf("+ Error: New not possible\n");
         else
             printf("* New: party %s\n", item1.partyName);
@@ -48,7 +48,7 @@ void new(char param[NAME_LENGTH_LIMIT + 1],tList *list) {             //función
 void stats(int param_int,tList list, int vote_null, int total_votes) {             //función que muestra los votos de cada partido y la participación
     tItemL item1;
     tPosL pos;
-    if (!isEmptyList(list)) {                         //comprobacion de lista vacia
+    if (!isEmptyList(list)) {                         //comprobación de lista vacía
         item1 = getItem(first(list), list);             //item1 toma el valor del primer elemento de la lista
         pos = first(list);
         printf("Party %s numvotes %d (%.2f%%)\n", item1.partyName, item1.numVotes,
@@ -61,7 +61,7 @@ void stats(int param_int,tList list, int vote_null, int total_votes) {          
                    (total_votes + vote_null) == 0 || item1.numVotes == 0 ? 0 : (float) item1.numVotes /(total_votes) * 100);
         }
     } else {
-        printf("+ Error: none parties found\n");         //mensaje de error en caso de lista vacia
+        printf("+ Error: none parties found\n");         //mensaje de error en caso de lista vacía
     }
     printf("Null votes %d\n", vote_null);
     printf("Participation: %d votes from %d voters (%.2f%%)\n", (total_votes + vote_null),param_int,
@@ -83,17 +83,17 @@ void vote(char param[NAME_LENGTH_LIMIT + 1],tList *list, int *vote_null, int *to
     }
 }
 
-void illegal(char param[NAME_LENGTH_LIMIT + 1],tList *list, int *vote_null, int *total_votes) {
+void illegal(char param[NAME_LENGTH_LIMIT + 1],tList *list, int *vote_null, int *total_votes) {         //función que ilegaliza un partido
     tPosL pos;
     tItemL item;
-    pos = findItem(param, *list);
+    pos = findItem(param, *list);                                       //obtención de la posición en la lista del partido
     if(pos != LNULL) {
         item = getItem(pos,*list);
         *vote_null += item.numVotes;
         *total_votes = *total_votes - item.numVotes;
-        deleteAtPosition(pos, &*list);
-        if (findItem(param, *list) == LNULL)
-            printf("* Illegalize: party %s\n", param);
+        deleteAtPosition(pos, &*list);                                    //elimina el partido de la lista
+        if (findItem(param, *list) == LNULL)                              //no lo encuentra
+            printf("* Illegalize: party %s\n", param);                    //lo ilegaliza
         else
             printf("+ Error: Illegalize not possible\n");
     } else
@@ -101,7 +101,7 @@ void illegal(char param[NAME_LENGTH_LIMIT + 1],tList *list, int *vote_null, int 
 }
 
 void processCommand(char command_number[CODE_LENGTH + 1], char command,
-        char param[NAME_LENGTH_LIMIT + 1],tList * list, int *vote_null, int *total_votes) {      //funcion que determina la acción a llevar a cabo
+                    char param[NAME_LENGTH_LIMIT + 1],tList * list, int *vote_null, int *total_votes) {      //función que determina la acción a llevar a cabo
     printf("********************\n");                 //separador de intrucciones
     switch (command) {
         case 'N': {     //crear un partido
@@ -109,7 +109,7 @@ void processCommand(char command_number[CODE_LENGTH + 1], char command,
             new(param, &*list);
             break;
         }
-        case 'S': {     //actualizar estadisticas
+        case 'S': {     //actualizar estadísticas
             int param_int;
             sscanf(param, "%d", &param_int);
             printf("%s %c: totalvoters %d\n", command_number, command, param_int);
@@ -121,7 +121,7 @@ void processCommand(char command_number[CODE_LENGTH + 1], char command,
             vote(param,&*list, &*vote_null, &*total_votes);
             break;
         }
-        case 'I': {
+        case 'I': {     //ilegalizar partido
             printf("%s %c: party %s\n", command_number, command, param);
             illegal(param, &*list,&*vote_null,&*total_votes);
             break;
@@ -146,7 +146,7 @@ void readTasks(char *filename) {
             char format[16];
             sprintf(format, "%%%is %%c %%%is", CODE_LENGTH, NAME_LENGTH_LIMIT);
             fscanf(df, format, command_number, &command, param);
-            processCommand(command_number, command, param, &list, &vote_null, &total_votes);     //llamada a la funcion encargada de repartir tareas
+            processCommand(command_number, command, param, &list, &vote_null, &total_votes);     //llamada a la función encargada de repartir tareas
         }
         fclose(df);                                  //cierre del fichero
     } else {
@@ -158,7 +158,7 @@ int main(int nargs, char **args) {
 
     char *file_name;
 
-    if (nargs > 1) {                         //selecciona el archivo elegido en config.cmake si no esta ya inicializado
+    if (nargs > 1) {                         //selecciona el archivo elegido en config.cmake si no está ya inicializado
         file_name = args[1];
     } else {
 #ifdef INPUT_FILE
@@ -170,4 +170,5 @@ int main(int nargs, char **args) {
     readTasks(file_name);           //llamada a la función encargada de leer el fichero
 
     return 0;
+
 }

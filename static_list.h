@@ -22,7 +22,7 @@
 typedef int tPosL;
 typedef struct{
     tItemL data[SIZE];
-    tPosL lastp;
+    tPosL lastP;
 }tList;
 
 

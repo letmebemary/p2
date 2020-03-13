@@ -10,18 +10,18 @@
 #include "static_list.h"
 
 void createEmptyList (tList* L) {
-    L->lastp = LNULL;
+    L->lastP = LNULL;
 }
 
 bool insertItem(tItemL d, tPosL p, tList* L) {
-    if(L->lastp == SIZE-1)
+    if(L->lastP == SIZE - 1)
         return false;
     else {
-        L->lastp++;
+        L->lastP++;
         if (p == LNULL) {
-            L->data[L->lastp] = d;
+            L->data[L->lastP] = d;
         } else {
-                for (int i = L->lastp; i > p+1; i--)
+                for (int i = L->lastP; i > p + 1; i--)
                     L->data[i] = L->data[i-1];
                 L->data[p] = d;
         }
@@ -31,9 +31,9 @@ bool insertItem(tItemL d, tPosL p, tList* L) {
 
 bool copyList(tList L, tList* M) {
     tPosL p;
-    for (p = 0; p <= L.lastp; p++)
+    for (p = 0; p <= L.lastP; p++)
         M->data[p] = L.data[p];
-    M->lastp = L.lastp;
+    M->lastP = L.lastP;
     return true;
 }
 
@@ -43,8 +43,8 @@ void updateVotes(tNumVotes d, tPosL p, tList* L) {
 
 void deleteAtPosition(tPosL p, tList* L) {
     tPosL q;
-    L->lastp--;
-    for (q = p; q <= L->lastp; q++)
+    L->lastP--;
+    for (q = p; q <= L->lastP; q++)
         L->data[q] = L->data[q+1];
 
 }
@@ -55,10 +55,10 @@ void deleteList(tList* L) { //acabar
 
 tPosL findItem(tPartyName d, tList L) {
     tPosL p;
-    if (L.lastp == LNULL)
+    if (L.lastP == LNULL)
         return LNULL;
     else {
-        for (p = 0; (p < L.lastp) && (strcmp(L.data->partyName[p], d) != 0); p++) {
+        for (p = 0; (p < L.lastP) && (strcmp(L.data->partyName[p], d) != 0); p++) {
             if (strcmp(L.data->partyName[p], d) == 0)
                 return p;
             else
@@ -68,7 +68,7 @@ tPosL findItem(tPartyName d, tList L) {
 }
 
 bool isEmptyList(tList L) {
-    return L.lastp == LNULL;
+    return L.lastP == LNULL;
 }
 
 tItemL getItem(tPosL p, tList L) {
@@ -80,7 +80,7 @@ tPosL first(tList L) {
 }
 
 tPosL last(tList L) { //mirar que es laspos == iguana
-    return L.lastp;
+    return L.lastP;
 }
 
 tPosL previous(tPosL p, tList L) {

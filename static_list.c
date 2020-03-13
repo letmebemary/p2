@@ -21,7 +21,7 @@ bool insertItem(tItemL d, tPosL p, tList* L) {
         if (p == LNULL) {
             L->data[L->lastP] = d;
         } else {
-                for (int i = L->lastP; i > p + 1; i--)
+                for (int i = L->lastP; i > p; i--)
                     L->data[i] = L->data[i-1];
                 L->data[p] = d;
         }
@@ -58,12 +58,11 @@ tPosL findItem(tPartyName d, tList L) {
     if (L.lastP == LNULL)
         return LNULL;
     else {
-        for (p = 0; (p < L.lastP) && (strcmp(L.data->partyName[p], d) != 0); p++) {
-            if (strcmp(L.data->partyName[p], d) == 0)
-                return p;
-            else
-                return LNULL;
-        }
+        for (p = 0; (p < L.lastP) && (strcmp(L.data[p].partyName, d) != 0); p++);
+        if (strcmp(L.data[p].partyName, d) == 0)
+            return p;
+        else
+            return LNULL;
     }
 }
 

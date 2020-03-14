@@ -2,7 +2,7 @@
  * TITLE: PROGRAMMING II LABS
  * SUBTITLE: Practical 1
  * AUTHOR 1: Jeronimo Pardo Rodriguez LOGIN 1: j.pardo
- * AUTHOR 2: , Maria Martinez Sotelo LOGIN 2: maria.martinezs
+ * AUTHOR 2: Maria Martinez Sotelo LOGIN 2: maria.martinezs
  * GROUP: 4.3
  * DATE: ** / ** / **
  */
@@ -16,20 +16,19 @@
 
 // FUNCTIONS
 
-void createEmptyList (tList* L) {
+void createEmptyList (tList* L) {       //funcion que crea una lista vacia
     *L = LNULL;
 }
 
-bool createNode (tPosL* p){
+bool createNode (tPosL* p){            //funcion que crea un nodo
     *p = malloc(sizeof(struct tNode));
     return  *p != LNULL;
 }
 
-bool insertItem (tItemL d, tPosL p, tList* L){
+bool insertItem (tItemL d, tPosL p, tList* L){         //funcion que crea un elemento en la lista
     tPosL q,r;
 
-    if (!createNode(&q)) {//si no se ha creado nodo previamente
-        printf("no fue posible crear el nodo\n");
+    if (!createNode(&q)) {                //si no se ha creado nodo previamente
         return false;
     }
     else{
@@ -37,7 +36,7 @@ bool insertItem (tItemL d, tPosL p, tList* L){
         q -> next = LNULL; // y de puntero a siguiente = NULL
 
         if(*L == LNULL)   //caso lista vacia
-            *L = q;       //
+            *L = q;
 
         else if (p == LNULL){
             for(r = *L;r->next != LNULL;r = r->next); //recorrer la lista hasta el ultimo puntero a nodo, hasta q sea NULL
@@ -57,10 +56,10 @@ bool insertItem (tItemL d, tPosL p, tList* L){
     return 1;
 }
 
-bool copyList (tList L, tList* M) {
+bool copyList (tList L, tList* M) {     //funcion que copia una lista
     tPosL p,q,r;
 
-    if (L == LNULL) {
+    if (L == LNULL) {           //caso lista vacia
         *M = LNULL;
         return true;
 
@@ -87,7 +86,7 @@ bool copyList (tList L, tList* M) {
     }
 }
 
-void updateVotes (tNumVotes d, tPosL p, tList* L) {
+void updateVotes (tNumVotes d, tPosL p, tList* L) {   //funcion que actualiza los votos de un partido
     p -> data.numVotes = d;
 }
 
@@ -120,41 +119,40 @@ void deleteList (tList *L){
     }
 }
 
-tPosL  findItem (tPartyName d, tList L) {
+tPosL  findItem (tPartyName d, tList L) {      //funcion que localiza un elemento en la lista
     tPosL q;
-    /*(q -> data != d)*/
 
     for ( q = L;  (q != LNULL) && (strcmp(q -> data.partyName, d) != 0); q = q->next);
     return q;
 }
 
-bool isEmptyList (tList L) {
+bool isEmptyList (tList L) {     //funcion que comprueba si la lista esta vacia
     return L == LNULL;
 }
 
-tItemL getItem (tPosL p, tList L) {
+tItemL getItem (tPosL p, tList L) {     //funcion que devuelve un elemento de la lista
     return p -> data;
 }
 
-tPosL first (tList L) {
+tPosL first (tList L) {          //funcion que devuelve el primer elemento de la lista
     return L;
 }
 
-tPosL  last (tList L) {
+tPosL  last (tList L) {         //funcion que devuelve el último elemento de la lista
     tPosL  q;
 
-    for(q=L; q->next != LNULL; q = q->next);
+    for(q=L; q->next != LNULL; q = q->next); //recorre la lista hasta apuntar a LNULL: ultima posicion
     return q;
 }
 
-tPosL next (tPosL p, tList L) {
+tPosL next (tPosL p, tList L) {    //funcion que devuelve la posicion siguiente a una dada
     return p -> next;
 }
 
-tPosL previous (tPosL p, tList L) {
+tPosL previous (tPosL p, tList L) {    //funcion que devuelve la posicion anterior a una dada
     tPosL q;
 
-    if (p == L)
+    if (p == L)  //caso inicio de la lista
         return LNULL;
 
     else {

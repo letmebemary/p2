@@ -2,7 +2,7 @@
  * TITLE: PROGRAMMING II LABS
  * SUBTITLE: Practical 1
  * AUTHOR 1: Jeronimo Pardo Rodriguez LOGIN 1: j.pardo
- * AUTHOR 2: , Maria Martinez Sotelo LOGIN 2: maria.martinezs
+ * AUTHOR 2: Maria Martinez Sotelo LOGIN 2: maria.martinezs
  * GROUP: 4.3
  * DATE: ** / ** / **
  */
@@ -29,7 +29,7 @@
 
 
 
-void new(char param[NAME_LENGTH_LIMIT + 1],tList *list) {             //función que crea un nuevo partido
+void new(char param[NAME_LENGTH_LIMIT + 1],tList *list) {             //funcion que crea un nuevo partido
     tItemL item1;
 
     if (findItem(param,*list) == LNULL) {                    //comprobacion de que el partido no exista ya
@@ -45,7 +45,7 @@ void new(char param[NAME_LENGTH_LIMIT + 1],tList *list) {             //función
 
 }
 
-void stats(int param_int,tList list, int vote_null, int total_votes) {             //función que muestra los votos de cada partido y la participación
+void stats(int param_int,tList list, int vote_null, int total_votes) {             //funcion que muestra los votos de cada partido y la participación
     tItemL item1;
     tPosL pos;
     if (!isEmptyList(list)) {                         //comprobacion de lista vacia
@@ -68,7 +68,7 @@ void stats(int param_int,tList list, int vote_null, int total_votes) {          
            ((float) (total_votes + vote_null) / param_int) * 100);
 }
 
-void vote(char param[NAME_LENGTH_LIMIT + 1],tList *list, int *vote_null, int *total_votes) {           //función que toma nota de los votos
+void vote(char param[NAME_LENGTH_LIMIT + 1],tList *list, int *vote_null, int *total_votes) {           //funcion que toma nota de los votos
     tItemL item1;
 
     if (findItem(param, *list) == LNULL) {                //en el caso de que ese partido no exista: voto nulo
@@ -83,17 +83,17 @@ void vote(char param[NAME_LENGTH_LIMIT + 1],tList *list, int *vote_null, int *to
     }
 }
 
-void illegal(char param[NAME_LENGTH_LIMIT + 1],tList *list, int *vote_null, int *total_votes) {
+void illegal(char param[NAME_LENGTH_LIMIT + 1],tList *list, int *vote_null, int *total_votes) {  //funcion que ilegaliza un partido
     tPosL pos;
     tItemL item;
-    pos = findItem(param, *list);
+    pos = findItem(param, *list);      //obtencion de la posicion en la lista del partido
     if(pos != LNULL) {
         item = getItem(pos,*list);
         *vote_null += item.numVotes;
         *total_votes = *total_votes - item.numVotes;
-        deleteAtPosition(pos, &*list);
-        if (findItem(param, *list) == LNULL)
-            printf("* Illegalize: party %s\n", param);
+        deleteAtPosition(pos, &*list);                      //elimina el partido de la lista
+        if (findItem(param, *list) == LNULL)                //no lo encuentra
+            printf("* Illegalize: party %s\n", param);      //lo ilegaliza
         else
             printf("+ Error: Illegalize not possible\n");
     } else
@@ -101,7 +101,7 @@ void illegal(char param[NAME_LENGTH_LIMIT + 1],tList *list, int *vote_null, int 
 }
 
 void processCommand(char command_number[CODE_LENGTH + 1], char command,
-        char param[NAME_LENGTH_LIMIT + 1],tList * list, int *vote_null, int *total_votes) {      //funcion que determina la acción a llevar a cabo
+        char param[NAME_LENGTH_LIMIT + 1],tList * list, int *vote_null, int *total_votes) {      //funcion que determina la accion a llevar a cabo
     printf("********************\n");                 //separador de intrucciones
     switch (command) {
         case 'N': {     //crear un partido
@@ -133,8 +133,8 @@ void processCommand(char command_number[CODE_LENGTH + 1], char command,
 }
 
 void readTasks(char *filename) {
-    tList list;                     //declaración lista de tipo tList
-    createEmptyList(&list);         //creación de la lista vacía
+    tList list;                     //declaracion lista de tipo tList
+    createEmptyList(&list);         //creacion de la lista vacía
     FILE *df;
     int vote_null= 0, total_votes = 0;         //votos nulos y votos totales
 

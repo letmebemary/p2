@@ -26,7 +26,11 @@
 #endif
 
 
-
+void deleteList(tList *list){
+    tPosL p;
+    for(p = last(*list); p >= first(*list); p = previous(p, *list))
+        deleteAtPosition(p, &*list);
+}
 
 
 void new(char param[NAME_LENGTH_LIMIT + 1],tList *list) {             //funcion que crea un nuevo partido
@@ -152,6 +156,8 @@ void readTasks(char *filename) {
     } else {
         printf("Cannot open file %s.\n", filename);  //error si no lee el archivo
     }
+    
+    deleteList(&list);
 }
 
 int main(int nargs, char **args) {

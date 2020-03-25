@@ -44,6 +44,8 @@ bool insertItem(tItemL, tPosL, tList*);
 //Poscondicion: Las posiciones de los elementos de la lista posteriores al insertado pueden cambiar de valor.
 //}
 
+tPosL findItem(tPartyName, tList);
+
 
 void updateVotes(tNumVotes, tPosL, tList*);
 //{ Objetivo: Modifica el numero de votos del elemento situado en la posicion indicada.

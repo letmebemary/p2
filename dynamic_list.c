@@ -109,15 +109,7 @@ void deleteAtPosition (tPosL p, tList* L) {
     free(p);
 }
 
-void deleteList (tList *L){
-    tPosL p;
 
-    while(*L != LNULL) { // borra desde el primer hasta el ultimo apuntando con *L al siguiente
-        p = *L;
-        *L = (*L) -> next; //(*L) o p
-        free(p);
-    }
-}
 
 tPosL  findItem (tPartyName d, tList L) {      //funcion que localiza un elemento en la lista
     tPosL q;

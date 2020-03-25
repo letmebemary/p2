@@ -25,22 +25,6 @@
 #include "list/list.h"
 #endif
 
-void print_list(tList list) {
-    tPosL pos;
-    tItemL item;
-
-    printf("(");
-    if (!isEmptyList(list)) {
-        pos = first(list);
-        while (pos != LNULL) {
-            item = getItem(pos, list);
-            printf(" %s numVotes %d", item.partyName, item.numVotes);
-            pos = next(pos, list);
-        }
-    }
-    printf(")\n");
-}
-
 void deleteList(tList *list){
     tPosL p = last(*list), q;
 
@@ -175,10 +159,7 @@ void readTasks(char *filename) {
     } else {
         printf("Cannot open file %s.\n", filename);  //error si no lee el archivo
     }
-
-    print_list(list);
     deleteList(&list);
-    print_list(list);
 }
 
 int main(int nargs, char **args) {

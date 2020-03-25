@@ -53,6 +53,8 @@ void updateVotes(tNumVotes, tPosL, tList*);
 //Poscondicion: El orden de los elementos de la lista no se ve modificado.
 //}
 
+tPosL findItem(tPartyName, tList);
+
 void deleteAtPosition(tPosL, tList*);
 //{ Objetivo: Elimina de la lista el elemento que ocupa la posicion indicada.
 //Entradas: lista y posicion a eliminar.

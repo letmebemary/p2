@@ -57,7 +57,7 @@ bool insertItem (tItemL d, tPosL p, tList* L){         //funcion que crea un ele
 }
 
 bool copyList (tList L, tList* M) {     //funcion que copia una lista
-    tPosL p,q,r;
+    tPosL p, q, r;
 
     if (L == LNULL) {           //caso lista vacia
         *M = LNULL;
@@ -108,7 +108,6 @@ void deleteAtPosition (tPosL p, tList* L) {
     }
     free(p);
 }
-
 
 
 tPosL  findItem (tPartyName d, tList L) {      //funcion que localiza un elemento en la lista

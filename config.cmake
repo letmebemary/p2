@@ -5,4 +5,4 @@ set(impl STATIC)
 #set(impl TESTLIST)
 
 #Choose the input file for main (new.txt, vote.txt, illegalize1.txt, ...)
-set(input illegalize2.txt)
+set(input illegalize1.txt)

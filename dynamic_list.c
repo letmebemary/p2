@@ -138,7 +138,7 @@ tPosL first (tList L) {          //funcion que devuelve el primer elemento de la
     return L;
 }
 
-tPosL  last (tList L) {         //funcion que devuelve el último elemento de la lista
+tPosL  last (tList L) {         //funcion que devuelve el ultimo elemento de la lista
     tPosL  q;
 
     for(q=L; q->next != LNULL; q = q->next); //recorre la lista hasta apuntar a LNULL: ultima posicion

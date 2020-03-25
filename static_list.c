@@ -49,9 +49,6 @@ void deleteAtPosition(tPosL p, tList* L) {          //funcion que elimina una po
 
 }
 
-void deleteList(tList* L) { //acabar
-
-}
 
 tPosL findItem(tPartyName d, tList L) {          //funcion que devuelve la posicion de un partido en la lista
     tPosL p;

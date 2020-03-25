@@ -36,17 +36,17 @@ void createEmptyList (tList*);
 
 bool insertItem(tItemL, tPosL, tList*);
 //{ Objetivo: Inserta un elemento en la lista antes de la posicion indicada.
-//Si la posicion es LNULL,entonces se añade al final. Devuelve un valor true
+//Si la posicion es LNULL,entonces se anhade al final. Devuelve un valor true
 //si el elemento fue insertado; false en caso contrario.
 //Entradas: lista, elemento a insertar y posicion donde se quiere insertar.
-//Salidas: lista modificada y un valor: verdadero si se insertó el elemento, falso en caso contrario.
+//Salidas: lista modificada y un valor: verdadero si se inserto el elemento, falso en caso contrario.
 //Precondicion: La lista debe estar previamente inicializada. La posicion indicada es una posicion valida en la lista o bien nula (LNULL).
 //Poscondicion: Las posiciones de los elementos de la lista posteriores al insertado pueden cambiar de valor.
 //}
 
 
 void updateVotes(tNumVotes, tPosL, tList*);
-//{ Objetivo: Modifica el número de votos del elemento situado en la posicion indicada.
+//{ Objetivo: Modifica el numero de votos del elemento situado en la posicion indicada.
 //Entradas: lista, posicion y votos que actualizar.
 //Salidas: Lista actualizada.
 //Precondicion: La lista debe estar previamente inicializada. La posicion indicada es una posicion valida en la lista.
@@ -83,7 +83,7 @@ tItemL getItem(tPosL, tList);
 //{ Objetivo: Devuelve el contenido del elemento de la lista que ocupa la posicion indicada.
 //Entradas: Lista y posicion de la que se quiere obtener el contenido.
 //Salidas: elemento deseado.
-//Precondicion: La lista debe estar previamente inicializada. La posicion indicada es una posición valida en la lista.
+//Precondicion: La lista debe estar previamente inicializada. La posicion indicada es una posicion valida en la lista.
 //Poscondicion:
 //}
 

@@ -61,15 +61,7 @@ void deleteAtPosition(tPosL, tList*);
 //Poscondicion: Tanto la posicion del elemento eliminado como aquellas de los elementos de la lista a continuacion del mismo pueden cambiar de valor.
 //}
 
-void deleteList(tList* L);
-tPosL findItem(tPartyName, tList);
-//{ Objetivo: Devuelve la posicion del primer elemento de la lista cuyo nombre de partido se
-//corresponda con el indicado (o LNULL si no existe tal elemento).
-//Entradas: Lista y nombre de partido.
-//Salidas: Posicion donde se corresponda el nombre de partido.
-//Precondicion: La lista debe estar previamente inicializada.
-//Poscondicion:
-//}
+
 
 bool isEmptyList(tList);
 //{ Objetivo: Determina si la lista esta vacia.

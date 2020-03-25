@@ -49,7 +49,7 @@ void new(char param[NAME_LENGTH_LIMIT + 1],tList *list) {             //funcion 
 
 }
 
-void stats(int param_int,tList list, int vote_null, int total_votes) {             //funcion que muestra los votos de cada partido y la participación
+void stats(int param_int,tList list, int vote_null, int total_votes) {             //funcion que muestra los votos de cada partido y la participacion
     tItemL item1;
     tPosL pos;
     if (!isEmptyList(list)) {                         //comprobacion de lista vacia
@@ -138,7 +138,7 @@ void processCommand(char command_number[CODE_LENGTH + 1], char command,
 
 void readTasks(char *filename) {
     tList list;                     //declaracion lista de tipo tList
-    createEmptyList(&list);         //creacion de la lista vacía
+    createEmptyList(&list);         //creacion de la lista vacia
     FILE *df;
     int vote_null= 0, total_votes = 0;         //votos nulos y votos totales
 
@@ -173,7 +173,7 @@ int main(int nargs, char **args) {
     }
 
 
-    readTasks(file_name);           //llamada a la función encargada de leer el fichero
+    readTasks(file_name);           //llamada a la funcion encargada de leer el fichero
 
     return 0;
 }

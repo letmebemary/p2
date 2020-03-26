@@ -45,7 +45,12 @@ bool insertItem(tItemL, tPosL, tList *);
 //}
 
 tPosL findItem(tPartyName, tList);
-
+//{ Objetivo: busca en la lista un partido.
+//Entradas: nombre del partido y la lista.
+//Salidas: posición en la que se encuentra o nulo si no existe en la lista.
+//Precondicion: que la lista esté inicializada.
+//Poscondicion: 
+//}
 
 void updateVotes(tNumVotes, tPosL, tList *);
 //{ Objetivo: Modifica el numero de votos del elemento situado en la posicion indicada.

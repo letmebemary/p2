@@ -9,9 +9,11 @@
 
 #include "static_list.h"
 
+
 void createEmptyList(tList *L) {                   //funcion que crea una lista vacia
     L->lastP = LNULL;
 }
+
 
 bool insertItem(tItemL d, tPosL p, tList *L) {    //funcion que inserta un elemento en la lista
     if (L->lastP == SIZE - 1)                      //caso lista llena
@@ -29,6 +31,7 @@ bool insertItem(tItemL d, tPosL p, tList *L) {    //funcion que inserta un eleme
     }
 }
 
+
 bool copyList(tList L, tList *M) {           //funcion que copia una lista
     tPosL p;
     
@@ -38,9 +41,11 @@ bool copyList(tList L, tList *M) {           //funcion que copia una lista
     return true;
 }
 
+
 void updateVotes(tNumVotes d, tPosL p, tList *L) {   //funcion que actualiza los votos de cada partido
     L->data[p].numVotes = d;
 }
+
 
 void deleteAtPosition(tPosL p, tList *L) {          //funcion que elimina una posicion
     tPosL q;
@@ -66,25 +71,31 @@ tPosL findItem(tPartyName d, tList L) {          //funcion que devuelve la posic
     }
 }
 
+
 bool isEmptyList(tList L) {                  //funcion que comprueba que una lista esta vacia
     return L.lastP == LNULL;
 }
+
 
 tItemL getItem(tPosL p, tList L) {          //funcion que devuelve el contenido de una posicion de la lista
     return L.data[p];
 }
 
+
 tPosL first(tList L) {                     //funcion que devuelve la primera posicion de la lista
     return 0;
 }
+
 
 tPosL last(tList L) {                     //funcion que devuelve la ultima posicion no vacia de la lista
     return L.lastP;
 }
 
+
 tPosL previous(tPosL p, tList L) {       //funcion que devuelve la posicion anterior a una dada
     return --p;
 }
+
 
 tPosL next(tPosL p, tList L) {           //funcion que devuelve la posicion siguiente a una dada
     if (p == last(L))                    //caso del ultimo de la lista

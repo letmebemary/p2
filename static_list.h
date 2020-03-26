@@ -20,7 +20,7 @@
 #include <string.h>
 
 typedef int tPosL;
-typedef struct {
+typedef struct {    //contenido y ultima posicion de la lista
     tItemL data[SIZE];
     tPosL lastP;
 } tList;

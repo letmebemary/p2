@@ -20,13 +20,13 @@
 #include <string.h>
 
 typedef int tPosL;
-typedef struct{
+typedef struct {
     tItemL data[SIZE];
     tPosL lastP;
-}tList;
+} tList;
 
 
-void createEmptyList (tList*);
+void createEmptyList(tList *);
 //{ Objetivo: Crea una lista vacia.
 //Entradas: puntero.
 //Salidas: lista vacia creada.
@@ -34,7 +34,7 @@ void createEmptyList (tList*);
 //Poscondicion: La lista queda inicializada y no contiene elementos.
 //}
 
-bool insertItem(tItemL, tPosL, tList*);
+bool insertItem(tItemL, tPosL, tList *);
 //{ Objetivo: Inserta un elemento en la lista antes de la posicion indicada.
 //Si la posicion es LNULL,entonces se anhade al final. Devuelve un valor true
 //si el elemento fue insertado; false en caso contrario.
@@ -47,7 +47,7 @@ bool insertItem(tItemL, tPosL, tList*);
 tPosL findItem(tPartyName, tList);
 
 
-void updateVotes(tNumVotes, tPosL, tList*);
+void updateVotes(tNumVotes, tPosL, tList *);
 //{ Objetivo: Modifica el numero de votos del elemento situado en la posicion indicada.
 //Entradas: lista, posicion y votos que actualizar.
 //Salidas: Lista actualizada.
@@ -55,7 +55,7 @@ void updateVotes(tNumVotes, tPosL, tList*);
 //Poscondicion: El orden de los elementos de la lista no se ve modificado.
 //}
 
-void deleteAtPosition(tPosL, tList*);
+void deleteAtPosition(tPosL, tList *);
 //{ Objetivo: Elimina de la lista el elemento que ocupa la posicion indicada.
 //Entradas: lista y posicion a eliminar.
 //Salidas: Lista con elemento ya eliminado.

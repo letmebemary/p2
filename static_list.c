@@ -9,27 +9,27 @@
 
 #include "static_list.h"
 
-void createEmptyList (tList* L) {                   //funcion que crea una lista vacia
+void createEmptyList(tList *L) {                   //funcion que crea una lista vacia
     L->lastP = LNULL;
 }
 
-bool insertItem(tItemL d, tPosL p, tList* L) {    //funcion que inserta un elemento en la lista
-    if(L->lastP == SIZE - 1)                      //caso lista llena
+bool insertItem(tItemL d, tPosL p, tList *L) {    //funcion que inserta un elemento en la lista
+    if (L->lastP == SIZE - 1)                      //caso lista llena
         return false;
     else {
         L->lastP++;
         if (p == LNULL) {                        //caso posicion nula
             L->data[L->lastP] = d;
         } else {                                //caso de insercion en el medio
-                for (int i = L->lastP; i > p; i--)
-                    L->data[i] = L->data[i-1];
-                L->data[p] = d;
+            for (int i = L->lastP; i > p; i--)
+                L->data[i] = L->data[i - 1];
+            L->data[p] = d;
         }
         return true;
     }
 }
 
-bool copyList(tList L, tList* M) {           //funcion que copia una lista
+bool copyList(tList L, tList *M) {           //funcion que copia una lista
     tPosL p;
     for (p = 0; p <= L.lastP; p++)
         M->data[p] = L.data[p];
@@ -37,15 +37,15 @@ bool copyList(tList L, tList* M) {           //funcion que copia una lista
     return true;
 }
 
-void updateVotes(tNumVotes d, tPosL p, tList* L) {   //funcion que actualiza los votos de cada partido
+void updateVotes(tNumVotes d, tPosL p, tList *L) {   //funcion que actualiza los votos de cada partido
     L->data[p].numVotes = d;
 }
 
-void deleteAtPosition(tPosL p, tList* L) {          //funcion que elimina una posicion
+void deleteAtPosition(tPosL p, tList *L) {          //funcion que elimina una posicion
     tPosL q;
     L->lastP--;
     for (q = p; q <= L->lastP; q++)
-        L->data[q] = L->data[q+1];
+        L->data[q] = L->data[q + 1];
 
 }
 

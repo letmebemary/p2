@@ -65,7 +65,7 @@ void stats(int param_int, tList list, int vote_null,
                (total_votes + vote_null) == 0 || item1.numVotes == 0 ? 0 : (float) item1.numVotes / (total_votes) *
                                                                            100);
 
-        while (next(pos, list) != LNULL) {                 //muestra las stats de cada partido si hay 2do
+        while (next(pos, list) != LNULL) {                 //muestra las stats de cada partido si hay segundo
             item1 = getItem(next(pos, list), list);
             pos = next(pos, list);
             printf("Party %s numvotes %d (%.2f%%)\n", item1.partyName, item1.numVotes,
@@ -140,7 +140,7 @@ void processCommand(char command_number[CODE_LENGTH + 1], char command,
             vote(param, &*list, &*vote_null, &*total_votes);
             break;
         }
-        case 'I': {
+        case 'I': {      //ilegalizar un partido
             printf("%s %c: party %s\n", command_number, command, param);
             illegal(param, &*list, &*vote_null, &*total_votes);
             break;

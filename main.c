@@ -1,10 +1,10 @@
 /*
  * TITLE: PROGRAMMING II LABS
  * SUBTITLE: Practical 1
- * AUTHOR 1: Jeronimo Pardo Rodriguez LOGIN 1: j.pardo
+ * AUTHOR 1: Jeronimo Pardo Rodriguez LOGIN 1: j.pardor
  * AUTHOR 2: Maria Martinez Sotelo LOGIN 2: maria.martinezs
  * GROUP: 4.3
- * DATE: ** / ** / **
+ * DATE: 26 / 03 / 20
  */
 
 #include <stdio.h>

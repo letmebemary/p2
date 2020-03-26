@@ -45,7 +45,6 @@ bool insertItem(tItemL, tPosL, tList *);
 //Poscondicion: Las posiciones de los elementos de la lista posteriores al insertado pueden cambiar de valor.
 //}
 
-
 void updateVotes(tNumVotes, tPosL, tList *);
 //{ Objetivo: Modifica el numero de votos del elemento situado en la posicion indicada.
 //Entradas: lista, posicion y votos que actualizar.
@@ -55,6 +54,12 @@ void updateVotes(tNumVotes, tPosL, tList *);
 //}
 
 tPosL findItem(tPartyName, tList);
+//{ Objetivo: busca en la lista un partido.
+//Entradas: nombre del partido y la lista.
+//Salidas: posición en la que se encuentra o nulo si no existe en la lista.
+//Precondicion: que la lista esté inicializada.
+//Poscondicion: 
+//}
 
 void deleteAtPosition(tPosL, tList *);
 //{ Objetivo: Elimina de la lista el elemento que ocupa la posicion indicada.
@@ -63,8 +68,6 @@ void deleteAtPosition(tPosL, tList *);
 //Precondicion: La lista debe estar previamente inicializada. La posicion indicada es una posicion valida en la lista.
 //Poscondicion: Tanto la posicion del elemento eliminado como aquellas de los elementos de la lista a continuacion del mismo pueden cambiar de valor.
 //}
-
-
 
 bool isEmptyList(tList);
 //{ Objetivo: Determina si la lista esta vacia.

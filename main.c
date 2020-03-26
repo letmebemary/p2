@@ -25,8 +25,8 @@
 #include "list/list.h"
 #endif
 
-void deleteList(tList *list) {
-    tPosL p = last(*list), q;
+void deleteList(tList *list) {                                //funcion que elimina la lista
+    tPosL p = last(*list), q;                                 //desde la ultima posicion
 
     while (p != LNULL) {
         q = p;

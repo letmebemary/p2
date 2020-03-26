@@ -31,6 +31,7 @@ bool insertItem(tItemL d, tPosL p, tList *L) {    //funcion que inserta un eleme
 
 bool copyList(tList L, tList *M) {           //funcion que copia una lista
     tPosL p;
+    
     for (p = 0; p <= L.lastP; p++)
         M->data[p] = L.data[p];
     M->lastP = L.lastP;
@@ -43,6 +44,7 @@ void updateVotes(tNumVotes d, tPosL p, tList *L) {   //funcion que actualiza los
 
 void deleteAtPosition(tPosL p, tList *L) {          //funcion que elimina una posicion
     tPosL q;
+    
     L->lastP--;
     for (q = p; q <= L->lastP; q++)
         L->data[q] = L->data[q + 1];
@@ -52,6 +54,7 @@ void deleteAtPosition(tPosL p, tList *L) {          //funcion que elimina una po
 
 tPosL findItem(tPartyName d, tList L) {          //funcion que devuelve la posicion de un partido en la lista
     tPosL p;
+    
     if (L.lastP == LNULL)                        //caso lista vacia
         return LNULL;
     else {
